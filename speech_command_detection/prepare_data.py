@@ -1,4 +1,4 @@
-from src.audio_utils import *
+from speech_command_detection.audio_utils import *
 
 import pandas as pd
 
@@ -46,7 +46,7 @@ def generate_labels(example_file: str, output_file: str) -> None:
     with open(os.path.join(CURRENT_DIR, example_file)) as f:
         file_list = f.read().split("\n")[:-1]
 
-    labels = list(set([file.split("/")[0] for file in file_list]))
+    labels = sorted(list(set([file.split("/")[0] for file in file_list])))
 
     with open(os.path.join(CURRENT_DIR, output_file), "w") as f:
         f.write("\n".join(labels))
@@ -76,7 +76,10 @@ def generate_parquet_file(
             compute_delta2=compute_delta2,
         )
         normalized_mfcc = normalize_mfcc(mfcc)
-        feature_dict[filename] = {"label": label, "normalized_mfcc": normalized_mfcc}
+        feature_dict[filename] = {
+            "label": label,
+            "normalized_mfcc": normalized_mfcc.tolist(),
+        }
 
     df = pd.DataFrame.from_dict(feature_dict, orient="index")
 

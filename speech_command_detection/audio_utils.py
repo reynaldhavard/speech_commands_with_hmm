@@ -37,6 +37,6 @@ def get_mfcc(
 
 
 def normalize_mfcc(x: np.ndarray) -> np.ndarray:
-    x = (x - np.mean(axis=0)) / (x.std(axis=0 + 1e-8))
+    x = (x - np.mean(x, axis=0)) / (np.std(x, axis=0) + 1e-8)
 
     return x
