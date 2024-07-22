@@ -16,7 +16,7 @@ def generate_training_list(
         testing_files = f.read().split("\n")[:-1]
 
     all_audio_files = []
-    for dirpath, dirnames, filenames in os.walk(data_folder):
+    for dirpath, _, filenames in os.walk(data_folder):
         for f in filenames:
             full_filename = os.path.join(dirpath, f)
             if (
@@ -32,3 +32,26 @@ def generate_training_list(
     with open(os.path.join(data_folder, output_list_file), "w") as f:
         for filename in training_files:
             f.write(f"{filename}\n")
+
+
+def generate_labels(example_file: str, output_file: str):
+    with open(example_file) as f:
+        file_list = f.read().split("\n")[:-1]
+
+    labels = list(set([file.split("/")[0] for file in file_list]))
+
+    with open(output_file, "w") as f:
+        f.write("\n".join(labels))
+
+
+if __name__ == "__main__":
+    generate_training_list(
+        data_folder="../data",
+        output_list_file="training_list.txt",
+        validation_list_file="validation_list.txt",
+        testing_list_file="testing_list.txt",
+    )
+
+    generate_labels(
+        example_file="../data/validation_list.txt", output_file="../labels.txt"
+    )
