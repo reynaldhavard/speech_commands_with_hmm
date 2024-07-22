@@ -1,5 +1,7 @@
 import os
 
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+
 
 def generate_training_list(
     data_folder: str,
@@ -7,8 +9,8 @@ def generate_training_list(
     validation_list_file: str,
     testing_list_file: str,
 ):
-    validation_txt = os.path.join(data_folder, validation_list_file)
-    testing_txt = os.path.join(data_folder, testing_list_file)
+    validation_txt = os.path.join(CURRENT_DIR, data_folder, validation_list_file)
+    testing_txt = os.path.join(CURRENT_DIR, data_folder, testing_list_file)
 
     with open(validation_txt) as f:
         validation_files = f.read().split("\n")[:-1]
@@ -16,7 +18,7 @@ def generate_training_list(
         testing_files = f.read().split("\n")[:-1]
 
     all_audio_files = []
-    for dirpath, _, filenames in os.walk(data_folder):
+    for dirpath, _, filenames in os.walk(os.path.join(CURRENT_DIR, data_folder)):
         for f in filenames:
             full_filename = os.path.join(dirpath, f)
             if (
@@ -29,18 +31,18 @@ def generate_training_list(
         list(set(all_audio_files) - set(validation_files) - set(testing_files))
     )
 
-    with open(os.path.join(data_folder, output_list_file), "w") as f:
+    with open(os.path.join(CURRENT_DIR, data_folder, output_list_file), "w") as f:
         for filename in training_files:
             f.write(f"{filename}\n")
 
 
 def generate_labels(example_file: str, output_file: str):
-    with open(example_file) as f:
+    with open(os.path.join(CURRENT_DIR, example_file)) as f:
         file_list = f.read().split("\n")[:-1]
 
     labels = list(set([file.split("/")[0] for file in file_list]))
 
-    with open(output_file, "w") as f:
+    with open(os.path.join(CURRENT_DIR, output_file), "w") as f:
         f.write("\n".join(labels))
 
 
