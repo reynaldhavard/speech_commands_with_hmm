@@ -32,7 +32,7 @@ class HMM:
         self.n_mixtures = n_mixtures
         self.left_right = left_right
         self.labels = sorted(labels)
-        self.n_mfcc = 13
+        self.n_mfcc = n_mfcc
         self.use_delta = use_delta
         self.use_delta2 = use_delta2
 
