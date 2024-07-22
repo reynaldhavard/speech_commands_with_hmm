@@ -64,7 +64,7 @@ def generate_parquet_file(
         data_list = f.read().split("\n")[:-1]
 
     feature_dict = dict()
-    for filename in tqdm(data_list[:100]):
+    for filename in tqdm(data_list):
         full_filename = os.path.join(CURRENT_DIR, data_folder, filename)
         label = filename.split("/")[0]
         raw_audio, sr = load_audio(full_filename)
