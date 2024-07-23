@@ -1,5 +1,11 @@
 # Speech Commands with Hidden Markov Models and Gaussian Mixture Models
 
+## Demo
+
+Click [here](https://huggingface.co/spaces/reynaldhavard/speech-commands-with-hmm) to try a demo.
+
+## Overview
+
 This repository implements an approach to solving the problem of keyword spotting.
 
 It fits Hidden Markov Models (HMM) with Gaussian Mixture emissions on the [Speech Commands Dataset](https://research.google/blog/launching-the-speech-commands-dataset/) (v0.0.1), which is a dataset containing multiple ~1 second files for 30 different words and background noises.
