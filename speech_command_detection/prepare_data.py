@@ -1,9 +1,9 @@
 from speech_command_detection.audio_utils import *
 
 import pandas as pd
+from tqdm import tqdm
 
 import os
-from tqdm import tqdm
 
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
