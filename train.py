@@ -15,7 +15,7 @@ if __name__ == "__main__":
     USE_DELTA = True
     USE_DELTA2 = True
     LABELS_FILE = "labels.txt"
-    TRAINING_FEATURES = "../data/training_features.parquet"
+    TRAINING_FEATURES = "./data/training_features.parquet"
     MODELS_FOLDER = "models"
     MODEL_FILE = "HMMModels.pkl"
 
