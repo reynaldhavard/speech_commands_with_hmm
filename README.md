@@ -2,7 +2,7 @@
 
 ## Demo
 
-Click [here](https://huggingface.co/spaces/reynaldhavard/speech-commands-with-hmm) to try a demo.
+Click [here](https://huggingface.co/spaces/reynaldhavard/speech-commands-with-hmm) to try a demo: just record a short audio file, pronouncing one of the 30 indicated words.
 
 ## Overview
 
@@ -20,6 +20,9 @@ It also provides a way to launch an app to test the model with your own voice.
 - Each file will have some features extracted from it, specifically MFCCs with delta and delta-delta features. These features are normalized.
 - For each word, we initialize a HMM. Each HMM has the same number of states/components and the same number of Gaussian mixtures to represent the emission distributions. It is possible to choose whether we want our HMM to be left-right or ergodic, and whether we want to use the delta and delta-delta features.
 - Each HMM is fitted to audio files corresponding to a specific word, e.g. the HMM for the word "bed" will be fitted using features from audio files containing the word "bed" and no other word.
+- For prediction, the audio file is scored against each HMM and we select the highest score (log-probability) as our prediction.
+
+For more information about Hidden Markov Models, and specifically for audio processing, you can check: "A Tutorial on Hidden Markov Models and Selected Applications in Speech Recognition" by Rabiner (1989).
 
 
 ## How to use this repo?
@@ -38,10 +41,6 @@ You can have a look at the `confusion_matrix.ipynb` notebook to check the perfor
 
 ## Test with your own voice
 
-Whether you want to try the provided model or re-train your own model with different parameters, you can launch a Streamlit app and try with your own voice! Simply run `streamlit run app.py` (you do need to run the "pip install" commands first though) and it should start an app accessible via your browser.
+Whether you want to try locally the provided model or re-train your own model with different parameters, you can launch a Streamlit app and try with your own voice! Simply run `streamlit run app.py` (you do need to run the "pip install" commands first though) and it should start an app accessible via your browser.
 
-
-## TODO
-
-- Create external config files, instead of having config variables defined in the scripts.
-- Add more metrics for evaluation.
+You can also simply have a look at the [demo](https://huggingface.co/spaces/reynaldhavard/speech-commands-with-hmm) to try with your own voice without having to install anything.
