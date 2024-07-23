@@ -7,8 +7,8 @@ CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 if __name__ == "__main__":
-    N_COMPONENTS = 5
-    N_MIXTURES = 4
+    N_COMPONENTS = 6
+    N_MIXTURES = 9
     N_ITER = 10
     LEFT_RIGHT = True
     N_MFCC = 13
